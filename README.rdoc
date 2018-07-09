@@ -1,0 +1,34 @@
+URL Shortener Using ROR
+
+This URL Shortening takes long URLs and squeezes them into fewer characters to make the link easier to share, tweet, or send by email.
+
+Highlights:
+
+* Ruby version 2.2.0
+
+* Rails Version 4.2.5
+
+* Database - Postgresql
+
+Installation:
+
+To install the Ruby On Rails Shortener, take the following steps:
+
+* Upload this entire repository to the host on which you want this to live. Alternatively, you can do clone this repository to the server where you want this to live
+
+* Update your database.yml file with the username and password for your postgres
+
+* Create database by rake db:create and migrate it by rake db:migrate
+
+Features:
+
+* Generates short, easy-to-type URLs using only [a-z] characters.
+
+* Doesn’t create multiple short URLs when you try to shorten the same URL. In this case, the script will simply return the existing short URL for that long URL.
+
+* DRY, minimal code.
+
+* Redirect to a specific original url when shortened url is entered.
+
+* Dashboard for most frequently accessed URLs.
+

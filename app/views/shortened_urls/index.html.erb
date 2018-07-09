@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Coming Soon - Start Bootstrap Theme</title>
+
+    <!-- Bootstrap core CSS -->
+    <%= stylesheet_link_tag "coming-soon.min.css, bootstrap.min.css,font-awesome.min.css"%>
+    <%= javascript_include_tag "jquery.min.js, bootstrap.bundle.min.js, coming-soon.min.js", "simple-line-icons.css", "devicons.min.css", "resume.min.css"%>
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  </head>
+<!-- 
+  <body>
+
+    <div class="overlay"></div>
+    <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+      <source src="/assets/bg.mp4" type="video/mp4">
+    </video>
+
+    <div class="masthead">
+      <div class="masthead-bg"></div>
+      <div class="container h-100">
+        <div class="row h-100">
+          <div class="col-12 my-auto">
+            <div class="masthead-content text-white py-5 py-md-0">
+              <h1 class="mb-3">Enter the Url!</h1>
+              <div class="input-group input-group-newsletter">
+              	<h2></h2>
+				     
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body> -->
+
+
+
+  <body id="page-top">
+    <div class="row">
+      <div class="column bg-primary" id="sideNav">
+        <div class="text-white">
+          <h3>Enter the Url!</h3>
+          <br>
+          <div class="">
+            <form action="shortened_urls/create" method="post">
+              <input type="text" name="original_url" value="" class="form-control" placeholder="Enter url...">
+              <br>
+              <button class="btn btn-secondary" type="submit">Submit</button>
+            </form>       
+         
+          </div>
+          <br>
+          <div>
+            <% if params[:short_url].present? %>
+              <p>Your Shortened Url is:
+              <strong><%= link_to @short_url,@shortened_url.short_url, :target => "_blank"%></strong></p>
+            <% end %>
+            <% if params[:existing_url].present? %>
+              <p>This url is already present in our database.</p>
+              <p>Shortened Url for this is:
+              <strong><%= link_to @short_url,@shortened_url.short_url, :target => "_blank"%></strong></p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="container second-side text-center">
+        <section class="" id="about">
+          <h2>Dashboard</h2>
+          <table class="table table-striped table-responsive">
+            <thead><h3>Most Visited Urls</h3></thead>
+            <thead>
+              <th>Url</th>
+              <th>Shortened Url</th>
+              <th>Visited Count</th>
+            </thead>
+            <tbody>
+              <% ShortenedUrl.where.not(:visited => 0).order("visited desc").each do |url|%>
+                <tr>
+                  <td><%= url.original_url%></td>
+                  <td><%= link_to (request.host_with_port + '/' + url.short_url),url.short_url, :target => "_blank"%></td>
+                  <td><%= url.visited%></td>
+                </tr>
+              <% end%>
+          </tbody>
+        </table> 
+        </section>
+      </div>
+     </div>
+  </body>
+</html>
